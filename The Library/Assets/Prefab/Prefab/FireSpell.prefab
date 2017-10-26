@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4876608309532880}
   - component: {fileID: 33520167936795120}
   - component: {fileID: 23892204789418802}
-  - component: {fileID: 114953605079859784}
   - component: {fileID: 135377138353307382}
+  - component: {fileID: 114872863431955238}
   m_Layer: 0
   m_Name: FireSpell
   m_TagString: Spell
@@ -82,7 +82,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1547820671616566}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114953605079859784
+--- !u!114 &114872863431955238
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1547820671616566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f5182c421df0148a2cf3ed0059d7fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 35779082a8b9a4088a6071c0ff5fb397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
@@ -105,5 +105,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
