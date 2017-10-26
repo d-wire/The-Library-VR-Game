@@ -34,6 +34,7 @@ public class Projectile : MonoBehaviour {
             Destroy(gameObject);
         }
 		else if (other.tag == "Burnable"){
+			Destroy (gameObject);
 			Destroy(other.gameObject);
 		}
     }
