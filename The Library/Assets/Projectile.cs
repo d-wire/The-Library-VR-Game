@@ -27,15 +27,15 @@ public class Projectile : MonoBehaviour {
         }
 	}
 
-    protected void OnTriggerEnter(Collider other)
+	public void OnTriggerEnter(Collider other){
+		handleCollision (other);
+	}
+
+	protected virtual void handleCollision(Collider other)
     {
         if (other.tag == "Structure" )
         {
             Destroy(gameObject);
         }
-		else if (other.tag == "Burnable"){
-			Destroy (gameObject);
-			Destroy(other.gameObject);
-		}
     }
 }

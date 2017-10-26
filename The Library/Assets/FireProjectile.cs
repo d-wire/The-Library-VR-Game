@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireProjectile : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+public class FireProjectile : Projectile {
+	protected override void handleCollision(Collider other){
+		if (other.tag == "Structure" )
+		{
+			Destroy(gameObject);
+		}
+		else if (other.tag == "Object" && other.gameObject.GetComponent<ObjectScript>().burnable){
+			Destroy (gameObject);
+			Destroy(other.gameObject);
+		}
 	}
 }
