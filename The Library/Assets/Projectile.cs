@@ -27,11 +27,14 @@ public class Projectile : MonoBehaviour {
         }
 	}
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Structure")
+        if (other.tag == "Structure" )
         {
             Destroy(gameObject);
         }
+		else if (other.tag == "Burnable"){
+			Destroy(other.gameObject);
+		}
     }
 }
