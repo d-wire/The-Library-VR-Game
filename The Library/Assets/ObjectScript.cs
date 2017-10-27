@@ -7,6 +7,7 @@ public class ObjectScript : MonoBehaviour {
 	public bool burnable; // can be destroyed by fire-spell
 	public bool movable; // can be moved by air-spell
 	public bool fillable; // can be filled by water-spell
+	public bool steamable;
 
 	private Rigidbody rb;
 	// Use this for initialization
@@ -27,6 +28,10 @@ public class ObjectScript : MonoBehaviour {
 	public void Push() {
 		//move object, need to pass in a direction
 		rb.AddForce(transform.forward*2);
+	}
+
+	public void Steam(){
+	
 	}
 
 
