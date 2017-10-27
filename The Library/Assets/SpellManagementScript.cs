@@ -90,7 +90,7 @@ public class SpellManagementScript : MonoBehaviour {
     public void NextPrefabRight()
     {
         currentPrefabIndexRight++;
-        if (currentPrefabIndexRight == Prefabs.Length-1)
+        if (currentPrefabIndexRight == Prefabs.Length-2)
         {
             currentPrefabIndexRight = 0;
         }
@@ -101,14 +101,14 @@ public class SpellManagementScript : MonoBehaviour {
         currentPrefabIndexRight--;
         if (currentPrefabIndexRight == -1)
         {
-            currentPrefabIndexRight = Prefabs.Length - 1;
+            currentPrefabIndexRight = Prefabs.Length - 2;
         }
     }
 
     public void NextPrefabLeft()
     {
         currentPrefabIndexLeft++;
-        if (currentPrefabIndexLeft == Prefabs.Length-1)
+        if (currentPrefabIndexLeft == Prefabs.Length-2)
         {
             currentPrefabIndexLeft = 0;
         }
@@ -119,7 +119,7 @@ public class SpellManagementScript : MonoBehaviour {
         currentPrefabIndexLeft--;
         if (currentPrefabIndexLeft == -1)
         {
-            currentPrefabIndexLeft = Prefabs.Length - 1;
+            currentPrefabIndexLeft = Prefabs.Length - 2;
         }
     }
 
