@@ -25,9 +25,9 @@ public class ObjectScript : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
-	public void Push() {
-		//move object, need to pass in a direction
-		rb.AddForce(transform.forward*2);
+	public void Push(Vector3 delta) {
+        //move object, need to pass in a direction
+        transform.position += delta;
 	}
 
 	public void Steam(){

@@ -51,10 +51,10 @@ public class SpellManagementScript : MonoBehaviour {
     void Start()
     {
         // Temporary proof of concept
-        string[] testSpells = new string[] { Prefabs[0].name, Prefabs[1].name };
+        string[] testSpells = new string[] { Prefabs[1].name, Prefabs[2].name };
         Array.Sort(testSpells);
-        string key = testSpells[0] + ", " + testSpells[1];
-        combinedSpells.Add(key, Prefabs[2]);
+        string key = testSpells[1] + ", " + testSpells[2];
+        combinedSpells.Add(key, Prefabs[3]);
     }
 
     // Update is called once per frame
@@ -90,7 +90,7 @@ public class SpellManagementScript : MonoBehaviour {
     public void NextPrefabRight()
     {
         currentPrefabIndexRight++;
-        if (currentPrefabIndexRight >= Prefabs.Length-2)
+        if (currentPrefabIndexRight >= Prefabs.Length-1)
         {
             currentPrefabIndexRight = 0;
         }
@@ -101,14 +101,14 @@ public class SpellManagementScript : MonoBehaviour {
         currentPrefabIndexRight--;
         if (currentPrefabIndexRight <= -1)
         {
-            currentPrefabIndexRight = Prefabs.Length - 2;
+            currentPrefabIndexRight = Prefabs.Length - 1;
         }
     }
 
     public void NextPrefabLeft()
     {
         currentPrefabIndexLeft++;
-        if (currentPrefabIndexLeft >= Prefabs.Length-2)
+        if (currentPrefabIndexLeft >= Prefabs.Length-1)
         {
             currentPrefabIndexLeft = 0;
         }
