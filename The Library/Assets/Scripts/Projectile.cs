@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour {
 
     public float speed = 5.0f;
     public float duration = 4.0f;
-    protected Vector3 direction;
+    public Vector3 direction;
     private float initializationTime;
     private Rigidbody rb;
 
