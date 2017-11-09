@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class MasterSpellManagement : MonoBehaviour {
 
@@ -9,6 +10,10 @@ public class MasterSpellManagement : MonoBehaviour {
     public SteamVR_TrackedController right_controller;
     public GameObject[] combinedSpells;
     public Dictionary<string, GameObject> spellMapping = new Dictionary<string, GameObject>();
+	public Text leftSpell;
+	public Text rightSpell;
+	public Text riddleText;
+	public string riddle;
 
     private void OnEnable()
     {
@@ -20,11 +25,21 @@ public class MasterSpellManagement : MonoBehaviour {
     void Start () {
         string steamKey = "FireSpell, WaterSpell";
         spellMapping.Add(steamKey, combinedSpells[0]);
+		leftSpell.text = "Equip a spell";
+		rightSpell.text = "Equip a spell";
+		riddleText.text = riddle;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (left_controller.gameObject.GetComponent<SpellManagementScript>().currentSpell != null){
+		leftSpell.text = left_controller.gameObject.GetComponent<SpellManagementScript>().currentSpell.name;
 		
+		}
+		if(right_controller.gameObject.GetComponent<SpellManagementScript>().currentSpell != null){
+			rightSpell.text = right_controller.gameObject.GetComponent<SpellManagementScript>().currentSpell.name;
+	
+		}
 	}
 
     private void HandleLeftGripClicked(object sender, ClickedEventArgs e)

@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         direction = yangle * speed;
         initializationTime = Time.timeSinceLevelLoad;
-        rb.AddForce(direction * 2000*rb.mass);
+        //rb.AddForce(direction * 2000*rb.mass);
     }
 
 	// Update is called once per frame
