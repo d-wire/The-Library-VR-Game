@@ -5,133 +5,56 @@ using System.Linq;
 using System;
 
 public class SpellManagementScript : MonoBehaviour {
-    
-    public GameObject[] Prefabs;
-    public Dictionary<string, GameObject> combinedSpells = new Dictionary<string, GameObject>();
 
-    private GameObject currentPrefabObject;
-    private GameObject combinedEffect;
-    private int currentPrefabIndexRight;
-    private int currentPrefabIndexLeft;
+    public GameObject currentSpell;
+
     private bool combinedModeEntered = false;
-    
+    private SteamVR_TrackedController _controller;
 
-    private void UpdateEffect()
+    private void OnEnable()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCurrentLeft();
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            StartCurrentRight();
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            NextPrefabRight();
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            PreviousPrefabRight();
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            NextPrefabLeft();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            PreviousPrefabLeft();
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CombineEffects(currentPrefabIndexLeft, currentPrefabIndexRight);
-        }
+        _controller = GetComponent<SteamVR_TrackedController>();
+        _controller.TriggerClicked += HandleTriggerClicked;
     }
 
-    void Start()
+    private void OnDisable()
     {
-        // Temporary proof of concept
-        string[] testSpells = new string[] { Prefabs[1].name, Prefabs[2].name };
-        Array.Sort(testSpells);
-        string key = testSpells[1] + ", " + testSpells[2];
-        combinedSpells.Add(key, Prefabs[3]);
+        _controller.TriggerClicked -= HandleTriggerClicked;
     }
 
-    // Update is called once per frame
-    void Update () {
-        UpdateEffect();
-	}
-
-    public void StartCurrentRight()
+    private void HandleTriggerClicked(object sender, ClickedEventArgs e)
     {
-        StopCurrent();
-        Vector3 right_pos = new Vector3(transform.position.x - 10, transform.position.y, transform.position.z);
-        currentPrefabObject = GameObject.Instantiate(Prefabs[currentPrefabIndexRight]);
-        //currentPrefabObject.transform.TransformDirection(right_pos);
+        SpawnCurrentSpellAtController();
     }
-    public void StartCurrentLeft()
+
+    private void SpawnCurrentSpellAtController()
     {
-        StopCurrent();
-        if (combinedModeEntered)
+        if(combinedModeEntered)
         {
-            currentPrefabObject = GameObject.Instantiate(combinedEffect);
+            CastSpell();
             combinedModeEntered = false;
+            currentSpell = null;
         }
         else
         {
-            currentPrefabObject = GameObject.Instantiate(Prefabs[currentPrefabIndexLeft]);
-        }
-    }
-    public void StopCurrent()
-    {
-        currentPrefabObject = null;
-    }
-
-    public void NextPrefabRight()
-    {
-        currentPrefabIndexRight++;
-        if (currentPrefabIndexRight >= Prefabs.Length-1)
-        {
-            currentPrefabIndexRight = 0;
+            CastSpell();
+            currentSpell = null;
         }
     }
 
-    public void PreviousPrefabRight()
+    void CastSpell()
     {
-        currentPrefabIndexRight--;
-        if (currentPrefabIndexRight <= -1)
+        if(currentSpell == null)
         {
-            currentPrefabIndexRight = Prefabs.Length - 1;
+            return;
         }
+        Vector3 dir = _controller.transform.eulerAngles;
+        GameObject spell = GameObject.Instantiate(currentSpell, _controller.transform.position, _controller.transform.rotation);
+        spell.GetComponent<Projectile>().direction = dir;
     }
 
-    public void NextPrefabLeft()
+    public void setCombinedMode(bool var)
     {
-        currentPrefabIndexLeft++;
-        if (currentPrefabIndexLeft >= Prefabs.Length-1)
-        {
-            currentPrefabIndexLeft = 0;
-        }
-    }
-
-    public void PreviousPrefabLeft()
-    {
-        currentPrefabIndexLeft--;
-        if (currentPrefabIndexLeft <= -1)
-        {
-            currentPrefabIndexLeft = Prefabs.Length - 2;
-        }
-    }
-
-    public void CombineEffects(int index1, int index2)
-    {
-        string[] effects = new string[] { Prefabs[index1].name, Prefabs[index2].name };
-        Array.Sort(effects);
-        string key = effects[0] + ", " + effects[1];
-        if (combinedSpells.ContainsKey(key))
-        {
-            combinedModeEntered = true;
-            combinedEffect = combinedSpells[key];
-        }
+        combinedModeEntered = var;
     }
 }
