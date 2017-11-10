@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4438702205913726}
   - component: {fileID: 33629638435649974}
   - component: {fileID: 23694221837545670}
-  - component: {fileID: 114236287955897662}
   - component: {fileID: 135267528598096896}
   - component: {fileID: 54781558219442312}
+  - component: {fileID: 114392266563325456}
   m_Layer: 0
   m_Name: WaterSpell
   m_TagString: Spell
@@ -98,7 +98,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114236287955897662
+--- !u!114 &114392266563325456
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -106,11 +106,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1695868379420516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f5182c421df0148a2cf3ed0059d7fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 98c65aa4d3aaf9c4b96362ded9dda281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  duration: 1
+  speed: 2
+  duration: 2
   direction: {x: 0, y: 0, z: 0}
 --- !u!135 &135267528598096896
 SphereCollider:
@@ -119,7 +119,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695868379420516}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

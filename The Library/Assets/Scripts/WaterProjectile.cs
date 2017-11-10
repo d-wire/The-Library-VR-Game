@@ -10,7 +10,7 @@ public class WaterProjectile : Projectile
         {
             Destroy(gameObject);
         }
-        else if (other.tag == "Object" && other.gameObject.GetComponent<ObjectScript>().fillable)
+        else if (other.tag == "Object")
         {
             Destroy(gameObject);
             other.gameObject.GetComponent<Renderer>().material.color = Color.blue;

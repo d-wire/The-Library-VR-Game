@@ -9,6 +9,9 @@ TagManager:
   - Spell
   - Structure
   - Object
+  - FxTemporaire
+  - projectile
+  - Depressable
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - SpellBelt
   - 
   - 
   - 

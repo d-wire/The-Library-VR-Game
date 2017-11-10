@@ -9,7 +9,7 @@ public class FireProjectile : Projectile {
 			Destroy(gameObject);
 		}
 		else if (other.tag == "Object" && other.gameObject.GetComponent<ObjectScript>().burnable){
-            Destroy(other.gameObject);
+			other.gameObject.SetActive(false);
             Destroy(gameObject);
 		}
 	}
