@@ -7,14 +7,25 @@ using System;
 public class SpellManagementScript : MonoBehaviour {
 
     public GameObject currentSpell;
+    public GameObject laserPrefab;
 
     private bool combinedModeEntered = false;
     private SteamVR_TrackedController _controller;
+    private GameObject laser;
+    private Transform laserTransform;
+    private Vector3 hitPoint;
+
+    void Start()
+    {
+        laser = Instantiate(laserPrefab);
+        laserTransform = laser.transform;
+    }
 
     private void OnEnable()
     {
         _controller = GetComponent<SteamVR_TrackedController>();
         _controller.TriggerClicked += HandleTriggerClicked;
+        _controller.PadClicked += HandlePadClicked;
     }
 
     private void OnDisable()
@@ -25,6 +36,35 @@ public class SpellManagementScript : MonoBehaviour {
     private void HandleTriggerClicked(object sender, ClickedEventArgs e)
     {
         SpawnCurrentSpellAtController();
+    }
+
+    private void HandlePadClicked(object sender, ClickedEventArgs e)
+    {
+        RaycastHit hit;
+
+        // 2
+        if (Physics.Raycast(_controller.transform.position, transform.forward, out hit, 100) && !laser.activeInHierarchy)
+        {
+            hitPoint = hit.point;
+            ShowLaser(hit);
+        }
+        else
+        {
+            laser.SetActive(false);
+        }
+    }
+
+    private void ShowLaser(RaycastHit hit)
+    {
+        // 1
+        laser.SetActive(true);
+        // 2
+        laserTransform.position = Vector3.Lerp(_controller.transform.position, hitPoint, .5f);
+        // 3
+        laserTransform.LookAt(hitPoint);
+        // 4
+        laserTransform.localScale = new Vector3(laserTransform.localScale.x, laserTransform.localScale.y,
+            hit.distance);
     }
 
     private void SpawnCurrentSpellAtController()
