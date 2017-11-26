@@ -14,6 +14,7 @@ public class SpellManagementScript : MonoBehaviour {
     private GameObject laser;
     private Transform laserTransform;
     private Vector3 hitPoint;
+    private bool laserActive = false;
 
     void Start()
     {
@@ -40,17 +41,13 @@ public class SpellManagementScript : MonoBehaviour {
 
     private void HandlePadClicked(object sender, ClickedEventArgs e)
     {
-        RaycastHit hit;
-
-        // 2
-        if (Physics.Raycast(_controller.transform.position, transform.forward, out hit, 100) && !laser.activeInHierarchy)
+        if(!laserActive)
         {
-            hitPoint = hit.point;
-            ShowLaser(hit);
+            laserActive = true;
         }
         else
         {
-            laser.SetActive(false);
+            laserActive = false;
         }
     }
 
@@ -96,5 +93,24 @@ public class SpellManagementScript : MonoBehaviour {
     public void setCombinedMode(bool var)
     {
         combinedModeEntered = var;
+    }
+
+    void Update()
+    {
+        if (laserActive)
+        {
+            RaycastHit hit;
+
+            // 2
+            if (Physics.Raycast(_controller.transform.position, transform.forward, out hit, 100) && !laser.activeInHierarchy)
+            {
+                hitPoint = hit.point;
+                ShowLaser(hit);
+            }
+        }
+        else
+        {
+            laser.SetActive(false);
+        }
     }
 }
