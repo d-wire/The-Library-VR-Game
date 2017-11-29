@@ -8,7 +8,6 @@ public class SetCurrentSpell : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collided");
         if (other.tag == "GameController")
         {
             other.gameObject.GetComponent<SpellManagementScript>().currentSpell = spell;
