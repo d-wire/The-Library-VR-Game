@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorOpen : MonoBehaviour {
 
@@ -47,7 +48,13 @@ public class DoorOpen : MonoBehaviour {
 
 		if (fourBars && twoStone) {
 			this.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, -4);
+			StartCoroutine (LoadNextWithDelay ());
 		}
 
+	}
+
+	IEnumerator LoadNextWithDelay() {
+		yield return new WaitForSeconds(3);
+		SceneManager.LoadScene ("Rubbish");
 	}
 }
