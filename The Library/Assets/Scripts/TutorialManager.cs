@@ -47,7 +47,7 @@ public class TutorialManager : MonoBehaviour {
     void Update () {
         if ((_controller1.GetComponent<SpellManagementScript>().currentSpell != null || _controller2.GetComponent<SpellManagementScript>().currentSpell != null) && !spellSet)
         {
-            tutorialText.text = "Now pull the right trigger \r\n to cast the spell.";
+            tutorialText.text = "Now pull the trigger of the\r\n controller with the \r\n equipped spell to cast the spell.";
             spellSet = true;
         }
         {
