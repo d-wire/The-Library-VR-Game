@@ -32,6 +32,7 @@ public class SpellManagementScript : MonoBehaviour {
     private void OnDisable()
     {
         _controller.TriggerClicked -= HandleTriggerClicked;
+        _controller.PadClicked -= HandlePadClicked;
     }
 
     private void HandleTriggerClicked(object sender, ClickedEventArgs e)
@@ -62,6 +63,7 @@ public class SpellManagementScript : MonoBehaviour {
         // 4
         laserTransform.localScale = new Vector3(laserTransform.localScale.x, laserTransform.localScale.y,
             hit.distance);
+
     }
 
     private void SpawnCurrentSpellAtController()
@@ -102,7 +104,7 @@ public class SpellManagementScript : MonoBehaviour {
             RaycastHit hit;
 
             // 2
-            if (Physics.Raycast(_controller.transform.position, transform.forward, out hit, 100) && !laser.activeInHierarchy)
+            if (Physics.Raycast(_controller.transform.position, transform.forward, out hit, 100))
             {
                 hitPoint = hit.point;
                 ShowLaser(hit);
