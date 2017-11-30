@@ -28,7 +28,7 @@ public class TutorialManager : MonoBehaviour {
 
     private void HandleTriggerClicked(object sender, ClickedEventArgs e)
     {
-        if (spellSet)
+        if (spellSet && !spellCast)
         {
             tutorialText.text = "You can also toggle a \r\n laser pointer for aiming \r\n by clicking the touchpad.";
             spellCast = true;
@@ -37,7 +37,7 @@ public class TutorialManager : MonoBehaviour {
 
     private void HandlePadClicked(object sender, ClickedEventArgs e)
     {
-        if (spellCast)
+        if (spellCast && !laserEnabled)
         {
             tutorialText.text = "Riddle text.";
             laserEnabled = true;
