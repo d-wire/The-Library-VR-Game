@@ -39,6 +39,7 @@ public class TutorialManager : MonoBehaviour {
     {
         if (spellCast)
         {
+            tutorialText.text = "Riddle text.";
             laserEnabled = true;
         }
     }
