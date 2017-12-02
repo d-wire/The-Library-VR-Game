@@ -39,7 +39,7 @@ public class TutorialManager : MonoBehaviour {
     {
         if (spellCast && !laserEnabled)
         {
-            tutorialText.text = "Riddle text.";
+            tutorialText.text = "The clutter must go, \r\n Until none remain, \r\n To ashes they'll turn, \r\n At the touch of a flame.";
             laserEnabled = true;
         }
     }

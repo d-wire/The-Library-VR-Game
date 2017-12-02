@@ -60,7 +60,7 @@ public class DoorOpenCombo : MonoBehaviour {
     IEnumerator LerpScale2(float time)
     {
         Vector3 originalPosition = wallthing.transform.position;
-        Vector3 targetPosition = originalPosition + new Vector3(22f, 0f, 0f);
+        Vector3 targetPosition = originalPosition + new Vector3(45f, 0f, 0f);
         float originalTime = time;
 
         while (time > 0.0f)
