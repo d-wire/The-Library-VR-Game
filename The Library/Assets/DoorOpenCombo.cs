@@ -25,11 +25,7 @@ public class DoorOpenCombo : MonoBehaviour {
             //size += new Vector3(0f, 1f, 0f);
             //growTree.transform.localScale = Vector3.Lerp(size, growTree.transform.localScale, 1f);
             StartCoroutine(LerpScale(3f));
-            
-            switch1.SetActive (false);
-			switch2.SetActive (true);
-			switched = true;
-		}
+        }
 		if (switched){
 			this.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, -4);
 			StartCoroutine (LoadNextWithDelay ());
@@ -38,23 +34,33 @@ public class DoorOpenCombo : MonoBehaviour {
 	}
 
 	IEnumerator LoadNextWithDelay() {
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(7);
 		SceneManager.LoadScene ("Foyer");
 	}
 
+
     IEnumerator LerpScale(float time)
     {
+        switched = true;
         Vector3 originalScale = growTree.transform.localScale;
         Vector3 targetScale = originalScale + new Vector3(0f, 1f, 0f);
         float originalTime = time;
+        bool test = false;
 
         while (time > 0.0f)
         {
             time -= Time.deltaTime;
 
+            if(time / originalTime <= 0.5f && !test)
+            {
+                switch1.SetActive(false);
+                switch2.SetActive(true);
+                test = true;
+            }
+
             growTree.transform.localScale = Vector3.Lerp(targetScale, originalScale, time / originalTime);
             yield return new WaitForEndOfFrame();
-        } 
+        }
     }
 
     IEnumerator LerpScale2(float time)
