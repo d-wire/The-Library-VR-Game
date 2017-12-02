@@ -104,7 +104,7 @@ public class SpellManagementScript : MonoBehaviour {
             RaycastHit hit;
 
             // 2
-            if (Physics.Raycast(_controller.transform.position, transform.forward, out hit, 250))
+            if (Physics.Raycast(_controller.transform.position, transform.forward, out hit, 300))
             {
                 hitPoint = hit.point;
                 ShowLaser(hit);

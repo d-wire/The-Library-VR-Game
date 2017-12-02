@@ -9,6 +9,7 @@ public class SteamProjectile : Projectile {
 		//	Destroy(gameObject);
 		//}
 		if (other.tag == "Object" && other.gameObject.GetComponent<ObjectScript>().steamable){
+            Debug.Log("Hit");
 			Destroy (gameObject);
 			other.gameObject.tag = "Steamed";
 		}

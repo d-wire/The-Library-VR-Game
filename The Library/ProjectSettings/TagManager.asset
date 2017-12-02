@@ -12,6 +12,8 @@ TagManager:
   - FxTemporaire
   - projectile
   - Depressable
+  - Watered
+  - Steamed
   layers:
   - Default
   - TransparentFX
