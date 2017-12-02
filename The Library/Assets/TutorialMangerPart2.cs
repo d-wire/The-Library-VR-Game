@@ -31,7 +31,7 @@ public class TutorialMangerPart2 : MonoBehaviour {
     {
         if (!gripped)
         {
-            tutorialText.text = "Riddle text";
+            tutorialText.text = "Fire and water will make the \r\n world spin round. \r\n In nature's growth will \r\n the way forward be found.";
             gripped = true;
         }
     }
