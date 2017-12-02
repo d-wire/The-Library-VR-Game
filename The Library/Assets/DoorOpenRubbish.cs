@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorOpenRubbish : MonoBehaviour {
 
@@ -23,6 +24,13 @@ public class DoorOpenRubbish : MonoBehaviour {
             !barrel1.activeInHierarchy && !barrel2.activeInHierarchy && !barrel3.activeInHierarchy && !barrel4.activeInHierarchy && !barrel5.activeInHierarchy)
         {
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -4);
+            StartCoroutine(LoadNextWithDelay());
         }
 	}
+
+    IEnumerator LoadNextWithDelay()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Combination");
+    }
 }
