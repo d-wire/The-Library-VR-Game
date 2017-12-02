@@ -47,10 +47,25 @@ public class DoorOpen : MonoBehaviour {
 		}
 
 		if (fourBars && twoStone) {
-			this.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, -4);
+			StartCoroutine (LerpDoor (3f));
 			StartCoroutine (LoadNextWithDelay ());
 		}
 
+	}
+
+	IEnumerator LerpDoor(float time)
+	{
+		Vector3 originalPosition = this.transform.position;
+		Vector3 targetPosition = originalPosition + new Vector3(0f, 0f, -4f);
+		float originalTime = time;
+
+		while (time > 0.0f)
+		{
+			time -= Time.deltaTime;
+
+			this.transform.position = Vector3.Lerp(targetPosition, originalPosition, time / originalTime);
+			yield return new WaitForEndOfFrame();
+		}
 	}
 
 	IEnumerator LoadNextWithDelay() {
