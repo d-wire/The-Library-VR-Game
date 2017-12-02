@@ -8,28 +8,32 @@ public class TutorialMangerPart2 : MonoBehaviour {
     public Text tutorialText;
     public SteamVR_TrackedController _controller1;
     public SteamVR_TrackedController _controller2;
+    private bool gripped = false;
 
     // Use this for initialization
 
     private void OnEnable()
     {
-        // _controller1 = GetComponent<SteamVR_TrackedController>();
-        _controller1.TriggerClicked += HandleTriggerClicked;
-        _controller1.PadClicked += HandlePadClicked;
-
-        // _controller2 = GetComponent<SteamVR_TrackedController>();
-        _controller2.TriggerClicked += HandleTriggerClicked;
-        _controller2.PadClicked += HandlePadClicked;
+        _controller1.Gripped += HandleRightGripClicked;
+        _controller2.Gripped += HandleRightGripClicked;
     }
 
-    private void HandleTriggerClicked(object sender, ClickedEventArgs e)
+    private void HandleLeftGripClicked(object sender, ClickedEventArgs e)
     {
-
+        if(!gripped)
+        {
+            tutorialText.text = "Riddle text";
+            gripped = true;
+        }
     }
 
-    private void HandlePadClicked(object sender, ClickedEventArgs e)
+    private void HandleRightGripClicked(object sender, ClickedEventArgs e)
     {
-
+        if (!gripped)
+        {
+            tutorialText.text = "Riddle text";
+            gripped = true;
+        }
     }
 
     // Update is called once per frame
