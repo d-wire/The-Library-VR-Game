@@ -20,6 +20,9 @@ public class DoorOpenCombo : MonoBehaviour {
             StartCoroutine(LerpScale2(5f));
 			turnt = true;
 		}
+		if (turnt) {
+			turbine.transform.Rotate (0,0,50*Time.deltaTime);
+		}
 		if (turnt && growTree.CompareTag ("Watered") && !switched) {
             //Vector3 size = growTree.transform.localScale;
             //size += new Vector3(0f, 1f, 0f);
@@ -27,7 +30,7 @@ public class DoorOpenCombo : MonoBehaviour {
             StartCoroutine(LerpScale(3f));
         }
 		if (switched){
-			this.transform.position = new Vector3 (this.transform.position.x, this.transform.position.y, -4);
+			StartCoroutine (LerpDoor (3f));
 			StartCoroutine (LoadNextWithDelay ());
 		}
 
@@ -77,4 +80,20 @@ public class DoorOpenCombo : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
     }
+
+	IEnumerator LerpDoor(float time)
+	{
+		Vector3 originalPosition = this.transform.position;
+		Vector3 targetPosition = originalPosition + new Vector3(0f, 0f, -4f);
+		float originalTime = time;
+
+		while (time > 0.0f)
+		{
+			time -= Time.deltaTime;
+
+			this.transform.position = Vector3.Lerp(targetPosition, originalPosition, time / originalTime);
+			yield return new WaitForEndOfFrame();
+		}
+	}
+
 }
