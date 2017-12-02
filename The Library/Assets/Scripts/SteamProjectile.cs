@@ -10,9 +10,7 @@ public class SteamProjectile : Projectile {
 		//}
 		if (other.tag == "Object" && other.gameObject.GetComponent<ObjectScript>().steamable){
 			Destroy (gameObject);
-			Destroy(other.gameObject);
-			GameObject door = GameObject.Find ("Door");
-			door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y, -4);
+			other.gameObject.tag = "Steamed";
 		}
 	}
 }
