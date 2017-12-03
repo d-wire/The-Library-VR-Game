@@ -8,6 +8,8 @@ public class ObjectScript : MonoBehaviour {
 	public bool movable; // can be moved by air-spell
 	public bool fillable; // can be filled by water-spell
 	public bool steamable;
+    public bool zappable;
+    public bool scorable;
 
 	private Rigidbody rb;
 	// Use this for initialization
