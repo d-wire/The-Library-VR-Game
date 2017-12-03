@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 23569118079313124}
   - component: {fileID: 65875832304567390}
   - component: {fileID: 54394679964629654}
+  - component: {fileID: 114843805399604380}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,10 +39,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4567489988059608}
-  - component: {fileID: 114349902005232126}
   m_Layer: 0
   m_Name: BookCase_1
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,18 +168,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.03723922, y: 0.013127163, z: 0.07885328}
   m_Center: {x: -0.0000000037252903, y: -0.0000000018626445, z: 0.03942664}
---- !u!114 &114349902005232126
+--- !u!114 &114843805399604380
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1822255535770036}
+  m_GameObject: {fileID: 1478215809502496}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e5e27f42b2064a9db68fd3f7360228a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnable: 0
+  burnable: 1
   movable: 1
   fillable: 0
   steamable: 0

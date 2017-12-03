@@ -22,7 +22,9 @@ public class MasterSpellManagement : MonoBehaviour {
         // Use this for initialization
     void Start () {
         string steamKey = "FireSpell, WaterSpell";
+        string lightingKey = "Firespell, Firespell";
         spellMapping.Add(steamKey, combinedSpells[0]);
+        spellMapping.Add(lightingKey, combinedSpells[1]);
 		leftSpell.text = "Equip a spell";
 		rightSpell.text = "Equip a spell";
 	}
