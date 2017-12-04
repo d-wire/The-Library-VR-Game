@@ -11,10 +11,14 @@ public class DoorOpen : MonoBehaviour {
 	public GameObject westB;
 	public GameObject stone1;
 	public GameObject stone2;
+	public GameObject bridge;
 	private bool twoStone = false;
 	private string order = "EWNS";
 	private string burned = "";
 	private bool fourBars = false;
+	private bool done = false;
+	private bool openDoor = false;
+	private bool done2 = false;
 
 	// Update is called once per frame
 	void Update () {
@@ -46,7 +50,13 @@ public class DoorOpen : MonoBehaviour {
 			burned = "";
 		}
 
-		if (fourBars && twoStone) {
+		if (fourBars && twoStone && !done) {
+			done = true;
+			StartCoroutine (LerpBridge (5f));
+		}
+
+		if (done && openDoor && !done2) {
+			done2 = true;
 			StartCoroutine (LerpDoor (3f));
 			StartCoroutine (LoadNextWithDelay ());
 		}
@@ -68,8 +78,23 @@ public class DoorOpen : MonoBehaviour {
 		}
 	}
 
+	IEnumerator LerpBridge(float time) {
+		Vector3 originalPosition = bridge.transform.position;
+		Vector3 targetPosition = originalPosition + new Vector3 (71.9f, 0f, 0f);
+		float originalTime = time;
+
+		while (time > 0.0f)
+		{
+			time -= Time.deltaTime;
+
+			bridge.transform.position = Vector3.Lerp(targetPosition, originalPosition, time / originalTime);
+			yield return new WaitForEndOfFrame();
+		}
+		openDoor = true;
+	}
+
 	IEnumerator LoadNextWithDelay() {
 		yield return new WaitForSeconds(3);
-		SceneManager.LoadScene ("Rubbish");
+		SceneManager.LoadScene ("Foyer");
 	}
 }

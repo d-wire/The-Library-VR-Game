@@ -17,12 +17,14 @@ public class DoorOpenRubbish : MonoBehaviour {
     public GameObject barrel3;
     public GameObject barrel4;
     public GameObject barrel5;
+	private bool done = false;
 	
 	// Update is called once per frame
 	void Update () {
 		if(!crate1.activeInHierarchy && !crate2.activeInHierarchy && !crate3.activeInHierarchy && !crate4.activeInHierarchy && !crate5.activeInHierarchy && !crate6.activeInHierarchy &&
-            !barrel1.activeInHierarchy && !barrel2.activeInHierarchy && !barrel3.activeInHierarchy && !barrel4.activeInHierarchy && !barrel5.activeInHierarchy)
+            !barrel1.activeInHierarchy && !barrel2.activeInHierarchy && !barrel3.activeInHierarchy && !barrel4.activeInHierarchy && !barrel5.activeInHierarchy && !done)
         {
+			done = true;
 			StartCoroutine (LerpDoor (3f));
             StartCoroutine(LoadNextWithDelay());
         }

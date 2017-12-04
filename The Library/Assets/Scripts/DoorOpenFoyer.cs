@@ -7,6 +7,7 @@ public class DoorOpenFoyer : MonoBehaviour {
 
 	public GameObject water;
 	public GameObject bucket;
+	public GameObject bucketCollider;
 	private bool filled = false;
 	private bool scored = false;
 
@@ -18,11 +19,12 @@ public class DoorOpenFoyer : MonoBehaviour {
 		}
 		if (filled && water.CompareTag("Zapped")) {
 			bucket.SetActive (true);
+			bucketCollider.SetActive (true);
 		}
-		if (bucket.CompareTag("Score") && !scored) {
+		if (bucketCollider.GetComponent<MeshRenderer>().enabled && !scored) {
 			scored = true;
 			StartCoroutine (LerpDoor (3f));
-			StartCoroutine (LoadNextWithDelay ());
+			//StartCoroutine (LoadNextWithDelay ());
 		}
 	}
 

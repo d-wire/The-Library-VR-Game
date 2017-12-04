@@ -44,7 +44,7 @@ public class DoorOpenCombo : MonoBehaviour {
 
 	IEnumerator LoadNextWithDelay() {
 		yield return new WaitForSeconds(7);
-		SceneManager.LoadScene ("Foyer");
+		SceneManager.LoadScene ("Library");
 	}
 
 
