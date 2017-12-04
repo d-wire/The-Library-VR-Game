@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DoorOpenCombo : MonoBehaviour {
 
@@ -9,11 +10,29 @@ public class DoorOpenCombo : MonoBehaviour {
 	public GameObject switch1;
 	public GameObject wallthing;
 	public GameObject growTree;
+	public GameObject blankPlane;
+	public GameObject levelText;
 	private bool turnt = false;
 	private bool switched = false;
     private bool test = false;
     private bool doored = false;
     private bool test2 = false;
+
+	private float t1 = 0;
+	private float t2 = 0;
+	private float duration = 3f;
+	private Color32 blackPlane = new Color32 (0, 0, 0, 255);
+	private Color32 clearPlane = new Color32 (0, 0, 0, 0);
+	private Color32 whiteText = new Color32 (255, 255, 255, 255);
+	private bool levelOver = false;
+
+	// Start up operations
+	void Start () {
+		levelText = GameObject.Find("LevelText");
+		levelText.GetComponent<Text> ().text = "The Courtyard";
+		blankPlane = GameObject.Find("BlankPlane");
+		blankPlane.GetComponent<Image>().color = blackPlane;
+	}
 
     // Update is called once per frame
     void Update () {
@@ -37,8 +56,26 @@ public class DoorOpenCombo : MonoBehaviour {
         }
 		if (switched && test && !doored){
 			StartCoroutine (LerpDoor (3f));
-			StartCoroutine (LoadNextWithDelay ());
+			levelOver = true;
 		}
+
+		blankPlane.GetComponent<Image>().color = Color.Lerp (blackPlane, clearPlane, t1);
+		levelText.GetComponent<Text>().color = Color.Lerp (whiteText, clearPlane, t1);
+		if (t1 < 1) {
+			t1 += Time.deltaTime / duration;
+		} 
+
+		if (levelOver) {
+			blankPlane.GetComponent<Image>().color = Color.Lerp (clearPlane, blackPlane, t2);
+			if (t2 < 1) {
+				t2 += Time.deltaTime / duration;
+			} else {
+				StartCoroutine (LoadNextWithDelay ());
+			}
+				
+		}
+
+		
 
 	}
 

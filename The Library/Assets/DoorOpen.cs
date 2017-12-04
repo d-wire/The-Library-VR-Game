@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DoorOpen : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class DoorOpen : MonoBehaviour {
 	public GameObject stone1;
 	public GameObject stone2;
 	public GameObject bridge;
+	public GameObject blankPlane;
+	public GameObject levelText;
 	private bool twoStone = false;
 	private string order = "EWNS";
 	private string burned = "";
@@ -19,6 +22,23 @@ public class DoorOpen : MonoBehaviour {
 	private bool done = false;
 	private bool openDoor = false;
 	private bool done2 = false;
+
+	private float t1 = 0;
+	private float t2 = 0;
+	private float duration = 3f;
+	private Color32 blackPlane = new Color32 (0, 0, 0, 255);
+	private Color32 clearPlane = new Color32 (0, 0, 0, 0);
+	private Color32 whiteText = new Color32 (255, 255, 255, 255);
+	private bool levelOver = false;
+
+
+	// Start up operations
+	void Start () {
+		levelText = GameObject.Find("LevelText");
+		levelText.GetComponent<Text> ().text = "The Entrance Hall";
+		blankPlane = GameObject.Find("BlankPlane");
+		blankPlane.GetComponent<Image>().color = blackPlane;
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -58,7 +78,28 @@ public class DoorOpen : MonoBehaviour {
 		if (done && openDoor && !done2) {
 			done2 = true;
 			StartCoroutine (LerpDoor (3f));
-			StartCoroutine (LoadNextWithDelay ());
+			levelOver = true;
+		}
+
+
+		blankPlane.GetComponent<Image>().color = Color.Lerp (blackPlane, clearPlane, t1);
+		levelText.GetComponent<Text>().color = Color.Lerp (whiteText, clearPlane, t1);
+		if (t1 < 1) {
+			t1 += Time.deltaTime / duration;
+		} 
+
+		if (levelOver) {
+			blankPlane.GetComponent<Image>().color = Color.Lerp (clearPlane, blackPlane, t2);
+			if (t2 < 1) {
+				t2 += Time.deltaTime / duration;
+			} else {
+				StartCoroutine (LoadNextWithDelay ());
+			}
+
+		}
+
+		if (northB.transform.position.y < -10 || southB.transform.position.y < -10 || eastB.transform.position.y < -10 || westB.transform.position.y < -10) {
+			SceneManager.LoadScene ("Library");
 		}
 
 	}

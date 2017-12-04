@@ -89,6 +89,7 @@ public class SpellManagementScript : MonoBehaviour {
         }
         Vector3 dir = _controller.transform.eulerAngles;
         GameObject spell = GameObject.Instantiate(currentSpell, _controller.transform.position, _controller.transform.rotation);
+		GameObject animation = GameObject.Instantiate(currentSpell.transform.GetChild(0).gameObject, _controller.transform.position, _controller.transform.rotation, spell.transform);
         spell.GetComponent<Projectile>().direction = dir;
     }
 
